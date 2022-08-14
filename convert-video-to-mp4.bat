@@ -1,4 +1,4 @@
-:: ------ Batch file to read a video file and convert to flv using ffmpeg
+:: ------ Batch file to read a video file and convert to mp4 using ffmpeg
 :: don't print out commands
 echo off
 setlocal enabledelayedexpansion
