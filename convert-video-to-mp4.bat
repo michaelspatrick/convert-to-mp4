@@ -21,9 +21,15 @@ for /L %%i in (1,1,%argCount%) do (
 
   title "Optimize Video for Web Streaming (!mp4!)"
 
+  :: Minimal changes
   :: %ffmpeg% -i "!infile!" -c:v copy -c:a aac -strict experimental -b:a 128k "!mp4_tmp!"
+
+  :: Scale to 720x480 and Optimize for Web Streaming
   :: %ffmpeg% -y -i "!infile!" -strict experimental -pix_fmt yuv420p -profile:v baseline -level 3.0 -acodec aac -ar 44100 -ac 2 -ab 128k -vf "scale=720:480" -async 1 -movflags faststart "!mp4_tmp!"
+
+  :: Optimize for Web Streaming
   %ffmpeg% -y -i "!infile!" -strict experimental -pix_fmt yuv420p -profile:v baseline -level 3.0 -acodec aac -ar 44100 -ac 2 -ab 128k -async 1 -movflags faststart "!mp4_tmp!" 
+
   if errorlevel 1 goto :abort
 
   del "!mp4!"
